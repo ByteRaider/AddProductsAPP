@@ -9,13 +9,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Products App",
-      home: const LoginScreen(),
-      debugShowCheckedModeBanner: false,
-      routes: {
-        'login': (context) => const LoginScreen(),
-        'home': (context) => const HomeScreen(),
-      },
-    );
+        title: "Products App",
+        home: const LoginScreen(),
+        debugShowCheckedModeBanner: false,
+        routes: {
+          'login': (context) => const LoginScreen(),
+          'home': (context) => const HomeScreen(),
+        },
+        theme: ThemeData.dark().copyWith(
+          scaffoldBackgroundColor: Color.fromARGB(255, 48, 55, 98),
+        ));
   }
 }
