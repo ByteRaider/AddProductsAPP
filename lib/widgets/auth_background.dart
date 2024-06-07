@@ -15,8 +15,29 @@ class AuthBackground extends StatelessWidget {
       child: Stack(
         children: [
           _BackgroundBox1(),
+          const _HeaderIcon(),
         ],
       ),
+    );
+  }
+}
+
+class _HeaderIcon extends StatelessWidget {
+  const _HeaderIcon({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Container(
+          width: double.infinity,
+          margin: const EdgeInsets.only(top: 80),
+          child: Icon(
+            Icons.person_pin,
+            size: 100,
+            color: Colors.white.withOpacity(0.2),
+          )),
     );
   }
 }
