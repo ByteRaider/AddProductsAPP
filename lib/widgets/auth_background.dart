@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class AuthBackground extends StatelessWidget {
-  const AuthBackground({super.key});
+  final Widget child;
+  const AuthBackground({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -13,10 +14,7 @@ class AuthBackground extends StatelessWidget {
       width: double.infinity,
       height: double.infinity,
       child: Stack(
-        children: [
-          _BackgroundBox1(),
-          const _HeaderIcon(),
-        ],
+        children: [_BackgroundBox1(), const _HeaderIcon(), this.child],
       ),
     );
   }
