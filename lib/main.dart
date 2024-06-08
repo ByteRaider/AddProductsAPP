@@ -17,7 +17,8 @@ class MyApp extends StatelessWidget {
           'home': (context) => const HomeScreen(),
         },
         theme: ThemeData.dark().copyWith(
-          scaffoldBackgroundColor: Color.fromARGB(255, 48, 55, 98),
+          scaffoldBackgroundColor: const Color.fromARGB(255, 48, 55, 98),
+          iconTheme: IconThemeData(color: Colors.green.shade200),
         ));
   }
 }
