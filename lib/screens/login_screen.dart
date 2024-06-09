@@ -55,6 +55,8 @@ class _LoginForm extends StatelessWidget {
       padding: const EdgeInsets.all(5),
       child: Form(
         //TODO: KEEP REFERENCE KEY
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+
         child: Column(
           children: [
             TextFormField(
@@ -65,6 +67,13 @@ class _LoginForm extends StatelessWidget {
                 labelText: 'E-mail',
                 prefixIcon: Icons.alternate_email_rounded,
               ),
+              validator: (value) {
+                //email validation regular expression
+                String pattern =
+                    r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                RegExp regExp = RegExp(pattern);
+                return regExp.hasMatch(value ?? '') ? null : 'Invalid email';
+              },
             ),
             const SizedBox(height: 30),
             TextFormField(
@@ -72,10 +81,17 @@ class _LoginForm extends StatelessWidget {
               obscureText: true,
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecorations.authInputDecoration(
-                hintText: '#*&%^!@#%789456123',
+                hintText: 'Enter a secure password',
                 labelText: 'Password',
                 prefixIcon: Icons.password_rounded,
               ),
+              validator: (value) {
+                //  if (value != null && value.length >= 6) return null;
+                //  return 'Invalid password';
+                return (value != null && value.length >= 6)
+                    ? null
+                    : 'Password must be at least 6 characters';
+              },
             ),
             const SizedBox(height: 30),
             MaterialButton(
