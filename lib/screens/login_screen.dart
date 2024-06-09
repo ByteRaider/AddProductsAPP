@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:form_validation_productsapp_example/widgets/auth_background.dart';
 
 import '../widgets/widgets.dart';
+import 'ui/input_decorations.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key, superkey});
@@ -59,34 +60,41 @@ class _LoginForm extends StatelessWidget {
             TextFormField(
               autocorrect: false,
               keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-                labelText: 'Email',
-                prefixIcon: const Icon(Icons.alternate_email_rounded),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.white.withOpacity(0.5),
-                  ),
-                ),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.green.shade100.withOpacity(0.5),
-                    width: 2,
-                  ),
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
+              decoration: InputDecorations.authInputDecoration(
                 hintText: 'user@domain.com',
-                labelStyle: TextStyle(
-                  color:
-                      Theme.of(context).inputDecorationTheme.hintStyle!.color,
-                ),
-                prefix: Icon(
-                  Icons.alternate_email_rounded,
-                  color: Theme.of(context).iconTheme.color,
-                ),
+                labelText: 'E-mail',
+                prefixIcon: Icons.alternate_email_rounded,
               ),
             ),
+            const SizedBox(height: 30),
+            TextFormField(
+              autocorrect: false,
+              obscureText: true,
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecorations.authInputDecoration(
+                hintText: '#*&%^!@#%789456123',
+                labelText: 'Password',
+                prefixIcon: Icons.password_rounded,
+              ),
+            ),
+            const SizedBox(height: 30),
+            MaterialButton(
+                onPressed: () {
+                  //TODO: Login action
+                },
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(24),
+                ),
+                disabledColor: Colors.grey,
+                elevation: 0,
+                color: Theme.of(context).primaryColor,
+                textColor: Colors.white,
+                height: 50,
+                minWidth: double.infinity,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: const Text('Login'),
+                )),
           ],
         ),
       ),
