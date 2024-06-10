@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:form_validation_productsapp_example/providers/login_form_provider.dart';
 import 'package:form_validation_productsapp_example/widgets/auth_background.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/widgets.dart';
 import 'ui/input_decorations.dart';
@@ -9,17 +11,17 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: AuthBackground(
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(height: 250),
+              const SizedBox(height: 250),
               CardContainer(
                 child: Column(
                   children: [
-                    SizedBox(height: 10),
-                    Text(
+                    const SizedBox(height: 10),
+                    const Text(
                       'Login',
                       style: TextStyle(
                         color: Colors.white,
@@ -27,17 +29,20 @@ class LoginScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 10),
-                    _LoginForm(),
+                    const SizedBox(height: 10),
+                    ChangeNotifierProvider(
+                      create: (_) => LoginFormProvider(),
+                      child: const _LoginForm(),
+                    ),
                   ],
                 ),
               ),
-              SizedBox(height: 50),
-              Text(
+              const SizedBox(height: 50),
+              const Text(
                 'Create New Account',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
             ],
           ),
         ),
@@ -51,12 +56,13 @@ class _LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final loginForm = Provider.of<LoginFormProvider>(context);
     return Container(
       padding: const EdgeInsets.all(5),
       child: Form(
-        //TODO: KEEP REFERENCE KEY
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-
+        key: loginForm.formKey, // set the form key
+        autovalidateMode:
+            AutovalidateMode.onUserInteraction, // set the autovalidate mode
         child: Column(
           children: [
             TextFormField(
@@ -67,6 +73,7 @@ class _LoginForm extends StatelessWidget {
                 labelText: 'E-mail',
                 prefixIcon: Icons.alternate_email_rounded,
               ),
+              onChanged: (value) => loginForm.email = value,
               validator: (value) {
                 //email validation regular expression
                 String pattern =
@@ -85,6 +92,7 @@ class _LoginForm extends StatelessWidget {
                 labelText: 'Password',
                 prefixIcon: Icons.password_rounded,
               ),
+              onChanged: (value) => loginForm.password = value,
               validator: (value) {
                 //  if (value != null && value.length >= 6) return null;
                 //  return 'Invalid password';
@@ -97,6 +105,8 @@ class _LoginForm extends StatelessWidget {
             MaterialButton(
                 onPressed: () {
                   //TODO: Login action
+                  if (loginForm.isValidForm()) return;
+                  Navigator.pushReplacementNamed(context, 'home');
                 },
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(24),
