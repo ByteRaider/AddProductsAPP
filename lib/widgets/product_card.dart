@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_unnecessary_containers
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -23,8 +25,53 @@ class ProductCard extends StatelessWidget {
               // List of widgets
               _BackgroundImage(), //
               _ProductDetails(),
-              Positioned(top: 0, right: 0, child: _PriceTag()),
+              Positioned(
+                top: 0,
+                right: 0,
+                child: _PriceTag(),
+              ),
+              // TODO: CONDITION - _NotAvailable
+              Positioned(
+                top: 0,
+                left: 0,
+                child: _NotAvailable(),
+              ),
             ]),
+      ),
+    );
+  }
+}
+
+class _NotAvailable extends StatelessWidget {
+  const _NotAvailable({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      width: 100,
+      height: 70,
+      decoration: BoxDecoration(
+          color: Colors.yellow[700],
+          borderRadius: const BorderRadius.only(
+            topRight: Radius.circular(20),
+            bottomLeft: Radius.circular(20),
+          )),
+      child: FittedBox(
+        fit: BoxFit.contain,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Text(
+            'Not available',
+            style: TextStyle(
+              color: Colors.white.withOpacity(0.5),
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -129,17 +176,17 @@ class _BackgroundImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.all(Radius.circular(24)),
+      borderRadius: const BorderRadius.all(Radius.circular(24)),
       child: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(24)),
           color: Color.fromRGBO(255, 255, 255, 0.05),
         ),
-        child: FadeInImage(
-          placeholder: const AssetImage('assets/img/loading.gif'),
-          image: const AssetImage('assets/img/no-image.png'),
+        child: const FadeInImage(
+          placeholder: AssetImage('assets/img/loading.gif'),
+          image: AssetImage('assets/img/no-image.png'),
           fit: BoxFit.cover,
         ),
       ),
