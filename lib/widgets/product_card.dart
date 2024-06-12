@@ -22,8 +22,42 @@ class ProductCard extends StatelessWidget {
             children: [
               // List of widgets
               _BackgroundImage(), //
-              _ProductDetails()
+              _ProductDetails(),
+              Positioned(top: 0, right: 0, child: _PriceTag()),
             ]),
+      ),
+    );
+  }
+}
+
+class _PriceTag extends StatelessWidget {
+  const _PriceTag({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      decoration: const BoxDecoration(
+          color: Colors.indigo,
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(20),
+            bottomLeft: Radius.circular(20),
+          )),
+      child: const FittedBox(
+        fit: BoxFit.contain,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10),
+          child: Text(
+            '\$ 99.99',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -36,12 +70,50 @@ class _ProductDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 70,
-      color: Colors.red,
+    return Padding(
+      padding: const EdgeInsets.only(right: 50),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        width: double.infinity,
+        height: 70,
+        color: Colors.red,
+        decoration: _buildBoxDecoration(),
+        child: const Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Product Name',
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+            Text(
+              'Product ID',
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
+        ),
+      ),
     );
   }
+
+  BoxDecoration _buildBoxDecoration() => const BoxDecoration(
+        color: Color.fromRGBO(255, 255, 255, 0.05),
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(25),
+          topRight: Radius.circular(25),
+        ),
+      );
 }
 
 BoxDecoration _cardShape() => const BoxDecoration(
