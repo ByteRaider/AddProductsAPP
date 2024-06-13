@@ -55,6 +55,13 @@ class ProductScreen extends StatelessWidget {
         ),
       ),
       // FLOATING ACTION BUTTON
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.save),
+        onPressed: () {
+          //TODO: SAVE PRODUCT
+        },
+      ),
     );
   }
 }
