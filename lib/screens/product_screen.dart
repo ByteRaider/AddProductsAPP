@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:form_validation_productsapp_example/screens/ui/input_decorations.dart';
 import '../widgets/widgets.dart';
 
 class ProductScreen extends StatelessWidget {
@@ -53,6 +54,7 @@ class ProductScreen extends StatelessWidget {
           ],
         ),
       ),
+      // FLOATING ACTION BUTTON
     );
   }
 }
@@ -63,9 +65,35 @@ class _ProductForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        width: double.infinity,
         decoration: _buildBoxDecoration(),
+        child: Form(
+          child: Column(
+            children: [
+              const SizedBox(height: 10),
+              TextFormField(
+                  decoration: InputDecorations.authInputDecoration(
+                      hintText: 'Product Name', labelText: 'Name:')),
+              const SizedBox(height: 30),
+              TextFormField(
+                keyboardType: TextInputType.number,
+                decoration: InputDecorations.authInputDecoration(
+                    hintText: '\$ 99.99', labelText: 'Price:'),
+              ),
+              const SizedBox(height: 30),
+              SwitchListTile(
+                  value: true,
+                  title: const Text('Available'),
+                  activeColor: Colors.green,
+                  onChanged: (value) {
+                    //TODO: FUNCTION
+                  }),
+            ],
+          ),
+        ),
       ),
     );
   }
