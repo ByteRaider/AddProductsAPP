@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import '../widgets/widgets.dart';
 
 class ProductScreen extends StatelessWidget {
   const ProductScreen({super.key});
@@ -11,7 +11,7 @@ class ProductScreen extends StatelessWidget {
         child: Column(
           children: [
             Stack(
-              children: [],
+              children: [ProductImage()],
             )
           ],
         ),
