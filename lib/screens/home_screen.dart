@@ -13,7 +13,10 @@ class HomeScreen extends StatelessWidget {
       ),
       body: ListView.builder(
         itemCount: 5,
-        itemBuilder: (BuildContext context, int index) => const ProductCard(),
+        itemBuilder: (BuildContext context, int index) => GestureDetector(
+          child: const ProductCard(),
+          onTap: () => Navigator.pushNamed(context, 'product'),
+        ),
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       ),
       floatingActionButton: FloatingActionButton(
