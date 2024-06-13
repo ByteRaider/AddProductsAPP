@@ -1,20 +1,19 @@
 import 'dart:convert';
 
-class Products {
+class Product {
   Cheeseburger cheeseburger;
   Cheeseburger torta;
 
-  Products({
+  Product({
     required this.cheeseburger,
     required this.torta,
   });
 
-  factory Products.fromRawJson(String str) =>
-      Products.fromJson(json.decode(str));
+  factory Product.fromRawJson(String str) => Product.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory Products.fromJson(Map<String, dynamic> json) => Products(
+  factory Product.fromJson(Map<String, dynamic> json) => Product(
         cheeseburger: Cheeseburger.fromJson(json["cheeseburger"]),
         torta: Cheeseburger.fromJson(json["torta"]),
       );
