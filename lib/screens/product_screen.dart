@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import '../widgets/widgets.dart';
 
 class ProductScreen extends StatelessWidget {
@@ -45,10 +46,44 @@ class ProductScreen extends StatelessWidget {
                   ),
                 ),
               ],
-            )
+            ), // ENS STACK
+            // PRODUCT FORM
+            const _ProductForm(),
+            const SizedBox(height: 100),
           ],
         ),
       ),
+    );
+  }
+}
+
+class _ProductForm extends StatelessWidget {
+  const _ProductForm();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Container(
+        decoration: _buildBoxDecoration(),
+      ),
+    );
+  }
+
+  BoxDecoration _buildBoxDecoration() {
+    return const BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.only(
+        bottomLeft: Radius.circular(25),
+        bottomRight: Radius.circular(25),
+      ),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black12,
+          blurRadius: 10,
+          offset: Offset(0, 5),
+        ),
+      ],
     );
   }
 }
