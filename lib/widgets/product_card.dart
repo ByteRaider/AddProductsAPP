@@ -123,7 +123,6 @@ class _ProductDetails extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         width: double.infinity,
         height: 70,
-        color: Colors.red,
         decoration: _buildBoxDecoration(),
         child: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,

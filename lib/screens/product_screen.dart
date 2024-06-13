@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class ProductScreen extends StatelessWidget {
   const ProductScreen({super.key});
@@ -6,8 +7,14 @@ class ProductScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(
-        child: Text('Product Screen'),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Stack(
+              children: [],
+            )
+          ],
+        ),
       ),
     );
   }
