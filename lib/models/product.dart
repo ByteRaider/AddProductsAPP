@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 class Product {
+  String? id;
   Cheeseburger cheeseburger;
   Cheeseburger torta;
 
